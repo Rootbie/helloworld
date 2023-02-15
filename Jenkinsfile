@@ -7,7 +7,7 @@ node{
   }
   
   stage("Maven build"){
-    def mvnPackage = 'mvn clean package -f /helloworld/pom.xml'
+    def mvnPackage = 'mvn clean package -f helloworld/pom.xml'
   
     sshagent(['instanceForDocker']) {
       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${mvnPackage}'
