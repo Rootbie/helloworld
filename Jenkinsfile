@@ -1,10 +1,18 @@
 node{
   stage("Scm checkout"){
-    git 'https://github.com/Rootbie/helloworld.git'
+    def clone = " git clone 'https://github.com/Rootbie/helloworld.git' "
+    
+    sshagent(['instanceForDocker']) {
+      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${clone}'
+    }
   }
   
-  stage("Maven build"){
-    sh 'mvn clean package'
+  stage("Maven build")
+    def package = 'mvn clean package'
+  
+    sshagent(['instanceForDocker']) {
+      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${package}'
+    }
   }
   
   stage("Build docker image"){
