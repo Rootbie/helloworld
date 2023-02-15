@@ -1,3 +1,3 @@
-# maven-project
+# Docker-project
 
-Simple Maven Project
+Simple Helloworld Project
