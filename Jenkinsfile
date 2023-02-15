@@ -7,16 +7,17 @@ node{
     }
   }
   
-  stage("Maven build") {
+  stage("Maven build"){
     def MvnPackage = 'mvn clean package'
   
     sshagent(['instanceForDocker']) {
+      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 "cd helloworld" '
       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${MvnPackage}'
     }
   }
   
   stage("Build docker image"){
-    def DockerBuild = 'docker build -t trinh00thien/helloworld:v1 helloworld '
+    def DockerBuild = 'docker build -t trinh00thien/helloworld:v1 .'
     
     sshagent(['instanceForDocker']) {
       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${DockerBuild}'
