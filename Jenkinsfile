@@ -20,15 +20,22 @@ node{
   }
   
   stage('3. Build docker image'){
-    def dockerBuild = 'docker build -t trinh00thien/helloworld:v1 helloworld '
+    def dockerBuild = 'docker build -t trinh00thien/helloworld:v2 helloworld '
     
     sshagent(['instanceForDocker']) {
       sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${dockerBuild}"
     }
   }
   
+  stage('4. Remove container'){
+    def dockerRm = 'docker rm -f web-hello'
+     sshagent(['instanceForDocker']) {
+       sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${dockerRm}"
+    }
+  }
+  
   stage('5. Deploy docker image to Tomcat server'){
-    def dockerRun = 'docker run -p 8109:8080 -d --name web-hello trinh00thien/helloworld:v1'
+    def dockerRun = 'docker run -p 8109:8080 -d --name web-hello trinh00thien/helloworld:v2'
     
     sshagent(['instanceForDocker']) {
       sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${dockerRun}"
