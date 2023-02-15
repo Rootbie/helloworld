@@ -11,7 +11,7 @@ node{
   
     sshagent(['instanceForDocker']) {
       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 cd helloworld '
-      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${MvnPackage}'
+      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${mvnPackage}'
     }
   }
   
@@ -19,7 +19,7 @@ node{
     def dockerBuild = 'docker build -t trinh00thien/helloworld:v1 .'
     
     sshagent(['instanceForDocker']) {
-      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${DockerBuild}'
+      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${dockerBuild}'
     }
     
   }
@@ -28,7 +28,7 @@ node{
     def dockerRun = 'docker run -p 8109:8080 -d --name web-hello trinh00thien/helloworld:v1'
     
     sshagent(['instanceForDocker']) {
-      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${DockerRun}'
+      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${dockerRun}'
     }
   }
 }
