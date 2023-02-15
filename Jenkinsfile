@@ -7,7 +7,7 @@ node{
   }
   
   stage("Maven build"){
-    def MvnPackage = 'mvn clean package'
+    def mvnPackage = 'mvn clean package'
   
     sshagent(['instanceForDocker']) {
       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 cd helloworld '
@@ -16,7 +16,7 @@ node{
   }
   
   stage("Build docker image"){
-    def DockerBuild = 'docker build -t trinh00thien/helloworld:v1 .'
+    def dockerBuild = 'docker build -t trinh00thien/helloworld:v1 .'
     
     sshagent(['instanceForDocker']) {
       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${DockerBuild}'
@@ -25,7 +25,7 @@ node{
   }
   
   stage("Deploy docker image to Tomcat server"){
-    def DockerRun = 'docker run -p 8109:8080 -d --name web-hello trinh00thien/helloworld:v1'
+    def dockerRun = 'docker run -p 8109:8080 -d --name web-hello trinh00thien/helloworld:v1'
     
     sshagent(['instanceForDocker']) {
       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${DockerRun}'
