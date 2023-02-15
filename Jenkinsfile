@@ -16,7 +16,7 @@ node{
   }
   
   stage("Build docker image"){
-    def DockerBuild = 'docker build -t trinh00thien/helloworld:v1 .'
+    def DockerBuild = 'docker build -t trinh00thien/helloworld:v1 helloworld/ '
     
     sshagent(['instanceForDocker']) {
       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${DockerBuild}'
