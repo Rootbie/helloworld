@@ -8,13 +8,10 @@ node{
   }
   
   stage("Build docker image"){
-    sh 'docker build -t trinh00thien/helloworld:v2 .'
+    sh 'docker build -t trinh00thien/helloworld:v1 .'
   }
   
-  stage("Remove container"){
-    sh 'docker container rm -f web-hello'
-  }
   stage("Deploy docker image to Tomcat server"){
-    sh 'docker run -p 7777:8080 -d --name web-hello trinh00thien/helloworld:v2'
+    sh 'docker run -p 8109:8080 -d --name web-hello trinh00thien/helloworld:v1'
   }
 }
