@@ -2,7 +2,7 @@ node{
   stage("Scm checkout"){ 
     
     sshagent(['instanceForDocker']) {
-      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 git clone https://github.com/Rootbie/helloworld.git '
+      sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 git clone https://github.com/Rootbie/helloworld.git "
     }
   }
   
@@ -10,15 +10,15 @@ node{
     def mvnPackage = 'mvn clean package -f helloworld/pom.xml'
   
     sshagent(['instanceForDocker']) {
-      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${mvnPackage}'
+      sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${mvnPackage}"
     }
   }
   
   stage("Build docker image"){
-    def dockerBuild = 'docker build -t trinh00thien/helloworld:v1 .'
+    def dockerBuild = 'docker build -t trinh00thien/helloworld:v1 helloworld '
     
     sshagent(['instanceForDocker']) {
-      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${dockerBuild}'
+      sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${dockerBuild}"
     }
     
   }
@@ -27,7 +27,7 @@ node{
     def dockerRun = 'docker run -p 8109:8080 -d --name web-hello trinh00thien/helloworld:v1'
     
     sshagent(['instanceForDocker']) {
-      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${dockerRun}'
+      sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${dockerRun}"
     }
   }
 }
