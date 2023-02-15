@@ -7,9 +7,7 @@ node{
       sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 rm -rf helloworld "
       
       // Clone a new git prj
-      sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${gitCmd} "
-      
-      sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 echo abc >> /helloworld/webapp/src/main/webapp/index.jsp "
+      sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${gitCmd} "      
     }
   }
   
@@ -17,6 +15,7 @@ node{
     def mvnPackage = 'mvn clean package -f helloworld/pom.xml'
   
     sshagent(['instanceForDocker']) {
+      sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 echo abc >> /helloworld/webapp/src/main/webapp/index.jsp "
       sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${mvnPackage}"
     }
   }
