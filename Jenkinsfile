@@ -1,6 +1,6 @@
 node{
   stage("Scm checkout"){
-    def GitClone = " git clone 'https://github.com/Rootbie/helloworld.git' "
+    def GitClone = " git 'https://github.com/Rootbie/helloworld.git' "
     
     sshagent(['instanceForDocker']) {
       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${GitClone}'
