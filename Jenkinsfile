@@ -3,15 +3,15 @@ node{
     def GitClone = " git clone 'https://github.com/Rootbie/helloworld.git' "
     
     sshagent(['instanceForDocker']) {
-      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${clone}'
+      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${GitClone}'
     }
   }
   
-  stage("Maven build")
+  stage("Maven build") {
     def MvnPackage = 'mvn clean package'
   
     sshagent(['instanceForDocker']) {
-      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${package}'
+      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${MvnPackage}'
     }
   }
   
