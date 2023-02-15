@@ -1,9 +1,9 @@
 node{
   stage("Scm checkout"){
-    def GitClone = 'git 'https://github.com/Rootbie/helloworld.git' '
+    def GitURL = 'https://github.com/Rootbie/helloworld.git' 
     
     sshagent(['instanceForDocker']) {
-      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${GitClone}'
+      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 git clone ${GitURL}'
     }
   }
   
@@ -11,7 +11,7 @@ node{
     def MvnPackage = 'mvn clean package'
   
     sshagent(['instanceForDocker']) {
-      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 "cd helloworld" '
+      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 cd helloworld '
       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${MvnPackage}'
     }
   }
