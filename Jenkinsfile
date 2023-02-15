@@ -13,10 +13,8 @@ node{
   
   stage('2. Maven build'){
     def mvnPackage = 'mvn clean package -f helloworld/pom.xml'
-    def str = 'echo abc >> helloworld/webapp/src/main/webapp/index.jsp'
   
     sshagent(['instanceForDocker']) {
-      sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${str} "
       sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${mvnPackage}"
     }
   }
