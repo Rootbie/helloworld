@@ -4,10 +4,10 @@ node{
     
     sshagent(['instanceForDocker']) {
       // Remove existing git project 
-      sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 rm -rf helloworld "
+      sh "ssh ubuntu@172.31.225.27 rm -rf helloworld "
       
       // Clone a new git prj
-      sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.225.27 ${gitCmd} "      
+      sh "ssh ubuntu@172.31.225.27 ${gitCmd} "      
     }
   }
   
