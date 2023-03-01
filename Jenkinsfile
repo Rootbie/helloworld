@@ -41,4 +41,12 @@ node{
       sh "ssh  ubuntu@172.31.225.27 ${dockerRun}"
     }
   }
+  
+  stage('6. Upload Docker image to Docker Hub') {
+    def dockerPush = 'docker image push trinh00thien/helloworld:v1'
+
+    sshagent(['instanceForDocker']) {
+      sh "ssh ubuntu@172.31.225.27 ${dockerPush}"
+    }
+  }
 }
