@@ -7,3 +7,4 @@ Simple Helloworld Project
 3. Build image based on Docker file
 4. Remove running containers if any
 5. Run container to deploy Docker image
+6. Push Docker image to a Docker repository
