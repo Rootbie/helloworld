@@ -8,7 +8,7 @@ node{
     }
 
     stage('3. Build Docker image'){
-        sh "docker build -t trinh00thien/demo-hello:v1 helloworld"
+        sh "docker build -t trinh00thien/demo-hello:v1 docker_demo/helloworld/"
     }
 
     stage('4. Remove container'){
