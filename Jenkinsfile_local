@@ -8,7 +8,7 @@ node{
     }
 
     stage('3. Build Docker image'){
-        sh "docker build -t trinh00thien/demo-hello:v1 helloworld"
+        sh "docker build -t trinh00thien/demo-hello:v2 helloworld"
     }
 
     stage('4. Remove container'){
@@ -16,10 +16,10 @@ node{
     }
 
     stage('5. Deploy Docker image to Tomcat'){
-        sh "docker run -p 23456:8080 -d --name cnt-hello trinh00thien/demo-hello:v1"
+        sh "docker run -p 23456:8080 -d --name cnt-hello trinh00thien/demo-hello:v2"
     }
 
     stage('6. Upload Docker to Docker repo'){
-        sh "docker push trinh00thien/demo-hello:v1"
+        sh "docker push trinh00thien/demo-hello:v2"
     }
 }
