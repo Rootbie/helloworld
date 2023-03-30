@@ -1,6 +1,6 @@
 node{
     stage('1. Clone new project'){
-        sh 'git clone https://github.com/Rootbie/helloworld.git'
+        sh 'git clone "https://github.com/Rootbie/helloworld.git"'
     }
 
     stage('2. Maven build'){
