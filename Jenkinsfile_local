@@ -4,11 +4,11 @@ node{
     }
 
     stage('2. Maven build'){
-        sh 'mvn clean package -f DevOps/helloworld/pom.xml'
+        sh 'mvn clean package -f helloworld/pom.xml'
     }
 
     stage('3. Build Docker image'){
-        sh "docker build -t trinh00thien/demo-hello:v1 DevOps/helloworld"
+        sh "docker build -t trinh00thien/demo-hello:v1 helloworld"
     }
 
     stage('4. Remove container'){
