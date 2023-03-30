@@ -20,7 +20,7 @@ node{
     }
     
     stage('6. Upload Docker to Docker repo'){
-        // Jenkins may require Docker login credentials
+        // Jenkins may require Docker login credentials so pls install "Docker Pipeline" plugin
         
         withDockerRegistry(credentialsId: 'dockerhub-login', url: 'https://index.docker.io/v1/') {
             sh "docker push trinh00thien/demo-hello:v2"
