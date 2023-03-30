@@ -14,16 +14,16 @@ node{
     stage('4. Remove container'){
         sh "docker rm -f cnt-hello"
     }
-
+    
     stage('5. Deploy Docker image to Tomcat'){
         sh "docker run -p 23456:8080 -d --name cnt-hello trinh00thien/demo-hello:v2"
     }
-
+    
     stage('6. Upload Docker to Docker repo'){
         // Jenkins may require Docker login credentials
-        withCredentials([string(credentialsId: 'docker-login_secret-text', variable: 'dockerHubPwd')])  {
-            sh "docker login -u trinh00thien -p ${dockerHubPwd}"
+        
+        withDockerRegistry(credentialsId: 'dockerhub-login', url: 'https://index.docker.io/v1/') {
+            sh "docker push trinh00thien/demo-hello:v2"
         }
-        sh "docker push trinh00thien/demo-hello:v2"
     }
 }
