@@ -21,6 +21,8 @@ node{
 
     stage('6. Upload Docker to Docker repo'){
         // Jenkins may require Docker login credentials
-        sh "docker push trinh00thien/demo-hello:v2"
+        withCredentials([usernameColonPassword(credentialsId: 'docker-login', variable: 'docker-dangnhap')]) {
+            sh "docker push trinh00thien/demo-hello:v2"
+        }
     }
 }
