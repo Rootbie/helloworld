@@ -1,6 +1,6 @@
 node{
     stage('1. SCM Checkout'){
-        sh "git clone https://github.com/Rootbie/helloworld"
+        sh "git url: https://github.com/Rootbie/helloworld"
     }
 
     stage('2. Maven build'){
