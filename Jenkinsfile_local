@@ -1,10 +1,10 @@
 node{
     stage('1. Clone new project'){
-        sh 'git clone "https://github.com/Rootbie/helloworld.git"'
+        sh "git clone https://github.com/Rootbie/helloworld.git"
     }
 
     stage('2. Maven build'){
-        sh 'mvn clean package -f helloworld/pom.xml'
+        sh "mvn clean package -f helloworld/pom.xml"
     }
 
     stage('3. Build Docker image'){
