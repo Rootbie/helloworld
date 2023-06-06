@@ -1,6 +1,6 @@
 # Docker-Exercise
 
-Simple Helloworld Exercise
+Simple Docker Helloworld Exercise
 
 1. Delete old prj if any & Clone new git project
 2. Put src code to maven package
